@@ -17,5 +17,15 @@ export function Game({ deck, children, updateDeck, onCardDrawn }: GameProps) {
     return cardDrawn;
   }
 
-  return <section>{children}</section>;
+  return (
+    <section>
+      <div>{children}</div>
+      <button
+        onClick={() => drawCard(numOfCardsDrawn)}
+        disabled={deck.length === 0}
+      >
+        Generate
+      </button>
+    </section>
+  );
 }

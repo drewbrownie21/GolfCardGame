@@ -5,15 +5,13 @@ import { useState } from "react";
 import type { Card } from "./components/Deck";
 
 function App() {
-  const [card, setCard] = useState<Card[] | null>([]);
-  console.log(card);
+  const [deck, setDeck] = useState<Card[] | null>([]);
+  console.log(deck);
 
   return (
     <>
-      <Deck onCardDrawn={setCard} numOfCardsDrawn={1} />
+      <Deck createDeck={setDeck} />
       <Player />
-      {card?.length === 1 ? card[0].rank : "Hello"}
-      {card?.length === 1 ? card[0].suit : "Hello"}
     </>
   );
 }

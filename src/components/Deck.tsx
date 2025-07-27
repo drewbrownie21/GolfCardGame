@@ -7,21 +7,11 @@ export type Card = {
 };
 
 type DeckProps = {
-  onCardDrawn: (card: Card[]) => void;
-  numOfCardsDrawn: number;
+  createDeck: (card: Card[]) => void;
 };
 
-export function Deck({ onCardDrawn, numOfCardsDrawn }: DeckProps) {
-  const [deck, setDeck] = useState<Card[]>([]);
-
-  function drawCard(numOfCardsDrawn: number) {
-    const cardDrawn = deck.at(-numOfCardsDrawn);
-    setDeck((prev) => prev.slice(0, -1));
-    if (cardDrawn) {
-      onCardDrawn([cardDrawn]);
-    }
-    return cardDrawn;
-  }
+export function Deck({ createDeck }: DeckProps) {
+  const [deckCreated, setDeckCreated] = useState(false);
 
   function randomizeDeck(randomizedDeckInput: Card[]) {
     for (let i = randomizedDeckInput.length - 1; i > 0; i--) {
@@ -45,19 +35,14 @@ export function Deck({ onCardDrawn, numOfCardsDrawn }: DeckProps) {
     let newDeck: Card[] = ranks.flatMap((rank) =>
       suits.map((suit) => ({ suit, rank, value: getValue(rank) })),
     );
-    setDeck(randomizeDeck(newDeck));
+    createDeck(randomizeDeck(newDeck));
+    setDeckCreated(true);
   };
 
   return (
     <>
-      <button onClick={generateDeck} disabled={deck.length > 0}>
+      <button onClick={generateDeck} disabled={deckCreated}>
         Deal
-      </button>
-      <button
-        onClick={() => drawCard(numOfCardsDrawn)}
-        disabled={deck.length === 0}
-      >
-        Generate
       </button>
     </>
   );
