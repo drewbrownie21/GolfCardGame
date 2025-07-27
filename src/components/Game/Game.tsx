@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Card } from "../generateDeck";
+import { GenerateDeck, type Card } from "../generateDeck";
 import { Setup } from "../Setup/Setup";
 
 type GameProps = {
@@ -18,13 +18,19 @@ export function Game({ deck, updateDeck, children }: GameProps) {
     return cardDrawn;
   }
 
+  const handleDraw = () => {
+    if (deck.length === 1) {
+      const deck = GenerateDeck();
+      updateDeck(deck);
+    }
+    drawCard(1);
+  };
+
   return (
     <section>
       <Setup setNumOfPlayers={setNumPlayers} />
       <div>{children}</div>
-      <button onClick={() => drawCard(1)} disabled={deck.length === 0}>
-        Draw
-      </button>
+      <button onClick={handleDraw}>Draw</button>
       Num of players is: {numPlayers}
     </section>
   );
