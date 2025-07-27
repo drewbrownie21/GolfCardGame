@@ -16,12 +16,12 @@ A digital version of the classic 6-card Golf card game, built with React! Try to
 
 ### 🔢 Scoring
 
-| Card         | Points |
-|--------------|--------|
-| Aces         | 1      |
+| Card         | Points     |
+| ------------ | ---------- |
+| Aces         | 1          |
 | 2–10         | Face value |
-| Jacks/Queens | 10     |
-| Kings        | 0      |
+| Jacks/Queens | 10         |
+| Kings        | 0          |
 
 - **Matching cards in a column** may cancel out (optional rule, worth 0).
 - Lowest total score after 9 rounds wins!
@@ -36,3 +36,4 @@ A digital version of the classic 6-card Golf card game, built with React! Try to
 git clone https://github.com/drewbrownie21/GolfCardGame.git
 cd GolfCardGame
 npm install
+```
