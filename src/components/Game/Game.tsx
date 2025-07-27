@@ -1,29 +1,22 @@
-import type { Card } from "../Deck";
+import type { Card } from "../generateDeck";
 
 type GameProps = {
   deck: Card[];
   updateDeck: (card: Card[]) => void;
-  onCardDrawn: (card: Card[]) => void;
-  children: any;
+  children: React.ReactNode;
 };
 
-export function Game({ deck, children, updateDeck, onCardDrawn }: GameProps) {
+export function Game({ deck, updateDeck, children }: GameProps) {
   function drawCard(numOfCardsDrawn: number) {
     const cardDrawn = deck.at(-numOfCardsDrawn);
     updateDeck((prev) => prev.slice(0, -1));
-    if (cardDrawn) {
-      onCardDrawn([cardDrawn]);
-    }
     return cardDrawn;
   }
 
   return (
     <section>
       <div>{children}</div>
-      <button
-        onClick={() => drawCard(numOfCardsDrawn)}
-        disabled={deck.length === 0}
-      >
+      <button onClick={() => drawCard(1)} disabled={deck.length === 0}>
         Generate
       </button>
     </section>

@@ -1,18 +1,10 @@
-import { useState } from "react";
-
 export type Card = {
   suit: string;
   rank: number;
   value: number;
 };
 
-type DeckProps = {
-  createDeck: (card: Card[]) => void;
-};
-
-export function Deck({ createDeck }: DeckProps) {
-  const [deckCreated, setDeckCreated] = useState(false);
-
+export function GenerateDeck() {
   function randomizeDeck(randomizedDeckInput: Card[]) {
     for (let i = randomizedDeckInput.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
@@ -35,15 +27,9 @@ export function Deck({ createDeck }: DeckProps) {
     let newDeck: Card[] = ranks.flatMap((rank) =>
       suits.map((suit) => ({ suit, rank, value: getValue(rank) })),
     );
-    createDeck(randomizeDeck(newDeck));
-    setDeckCreated(true);
+
+    return randomizeDeck(newDeck);
   };
 
-  return (
-    <>
-      <button onClick={generateDeck} disabled={deckCreated}>
-        Deal
-      </button>
-    </>
-  );
+  return generateDeck;
 }

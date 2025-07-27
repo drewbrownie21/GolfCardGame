@@ -1,17 +1,23 @@
 import "./App.css";
-import { Deck } from "./components/Deck";
+import { GenerateDeck } from "./components/generateDeck";
+import { Game } from "./components/Game/Game";
 import { Player } from "./components/Player/Player";
-import { useState } from "react";
-import type { Card } from "./components/Deck";
+import { useEffect, useState } from "react";
+import type { Card } from "./components/generateDeck";
 
 function App() {
   const [deck, setDeck] = useState<Card[] | null>([]);
   console.log(deck);
 
+  useEffect(() => {
+    const newDeck = GenerateDeck();
+    setDeck(newDeck);
+  }, []);
+
   return (
     <>
-      <Deck createDeck={setDeck} />
       <Player />
+      <Game deck={deck} updateDeck={setDeck} onCardDrawn />
     </>
   );
 }
