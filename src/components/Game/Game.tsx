@@ -10,20 +10,29 @@ type GameProps = {
 
 export function Game({ deck, updateDeck, children }: GameProps) {
   const [numPlayers, setNumPlayers] = useState<number | null>(2);
+  const [discarDeck, setDiscarDeck] = useState<Card[]>([]);
 
   function drawCard(numOfCardsDrawn: number) {
     const cardDrawn = deck.at(-numOfCardsDrawn);
     updateDeck((prev) => prev.slice(0, -1));
     console.log(cardDrawn);
+    console.log(discarDeck.length);
     return cardDrawn;
   }
 
   const handleDraw = () => {
     if (deck.length === 1) {
       const deck = GenerateDeck();
-      updateDeck(deck);
+      updateDeck(deck());
     }
-    drawCard(1);
+    let cardDrawn = drawCard(1);
+    if (cardDrawn) {
+      addToDiscardPile(cardDrawn);
+    }
+  };
+
+  const addToDiscardPile = (card: Card) => {
+    setDiscarDeck((prev) => [...prev, card]);
   };
 
   return (

@@ -7,7 +7,7 @@ import type { Card } from "./components/generateDeck";
 
 function App() {
   const [deck, setDeck] = useState<Card[] | null>([]);
-  console.log(deck);
+  console.log(deck?.length);
 
   useEffect(() => {
     const newDeck = GenerateDeck();
