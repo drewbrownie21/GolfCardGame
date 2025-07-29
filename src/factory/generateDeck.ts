@@ -5,7 +5,7 @@ export type Card = {
   flipped: boolean;
 };
 
-export function GenerateDeck() {
+export function GenerateDeck(deckInput?: Card[]) {
   function randomizeDeck(randomizedDeckInput: Card[]) {
     for (let i = randomizedDeckInput.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
@@ -34,7 +34,7 @@ export function GenerateDeck() {
       })),
     );
 
-    return randomizeDeck(newDeck);
+    return randomizeDeck(deckInput? deckInput : newDeck);
   };
 
   return generateDeck;

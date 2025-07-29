@@ -46,7 +46,7 @@ export function Game({ deck, updateDeck }: GameProps) {
    */
   const handleDraw = () => {
     if (deck.length === 0) {
-      const newDeck = GenerateDeck();
+      const newDeck = GenerateDeck(discardDeck);
       updateDeck(newDeck());
       setDiscardDeck([]);
       console.log("Shuffling...");
