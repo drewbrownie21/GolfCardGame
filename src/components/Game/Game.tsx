@@ -66,7 +66,6 @@ export function Game({ deck, updateDeck }: GameProps) {
         ))}
       </section>
       <button onClick={handleDraw}>Draw</button>
-      Num of players is: {numPlayers}
     </section>
   );
 }

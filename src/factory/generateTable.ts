@@ -2,7 +2,7 @@ import { type Hand2D } from "../components/Game/Game";
 import { type Card } from "./generateDeck";
 
 export function GenerateTable(numOfPlayers: number) {
-  const emptyCard: Card = { suit: "?", rank: 0, value: 0 };
+  const emptyCard: Card = { suit: "?", rank: 0, value: 0, flipped: false };
   const makeHand = (): Hand2D => [
     [emptyCard, emptyCard, emptyCard],
     [emptyCard, emptyCard, emptyCard],
