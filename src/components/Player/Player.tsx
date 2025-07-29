@@ -6,14 +6,19 @@ type PlayerProps = {
 };
 
 export function Player({ player, playerId }: PlayerProps) {
-  console.log(player)
   return (
     <section>
       <h1>Player id: {playerId}</h1>
       <p>Score: {player.score}</p>
       <section>
-        Row 1 - Suit: {player.hand[0][0].suit} Rank: {player.hand[0][0].rank} Value: {player.hand[0][0].value} <br/>
-        Row 2 - Suit: {player.hand[0][1].suit} Rank: {player.hand[0][1].rank} Value: {player.hand[0][1].value}
+        Row 1 - Card 1:{player.hand[0][0].suit}
+        {player.hand[0][0].rank} Card 2:{player.hand[0][1].suit}
+        {player.hand[0][1].rank} Card 3:{player.hand[0][2].suit}
+        {player.hand[0][2].rank} <br />
+        Row 2 - Card 4:{player.hand[1][0].suit}
+        {player.hand[1][0].rank} Card 5:{player.hand[1][1].suit}
+        {player.hand[1][1].rank} Card 6:{player.hand[1][2].suit}
+        {player.hand[1][2].rank}{" "}
       </section>
     </section>
   );
