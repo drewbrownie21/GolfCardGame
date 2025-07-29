@@ -35,17 +35,19 @@ export function Game({ deck, updateDeck }: GameProps) {
 
   function drawCard(numOfCardsDrawn: number) {
     const cardDrawn = deck.at(-numOfCardsDrawn);
-    updateDeck((prev) => prev.slice(0, -1));
+    updateDeck(deck.slice(0, -1));
     console.log(cardDrawn);
     console.log("Discard length " + discardDeck.length);
     return cardDrawn;
   }
 
   const handleDraw = () => {
-    if (deck.length === 1) {
-      const deck = GenerateDeck();
-      updateDeck(deck());
+    if (deck.length === 0) {
+      const newDeck = GenerateDeck();
+      updateDeck(newDeck());
       setDiscardDeck([]);
+      console.log("Shuffling...")
+      return;
     }
     let cardDrawn = drawCard(1);
     if (cardDrawn) {
@@ -62,7 +64,7 @@ export function Game({ deck, updateDeck }: GameProps) {
       <Setup setNumOfPlayers={setNumPlayers} />
       <section>
         {table.map((row, index) => (
-          <Player key={index} hand={row.player} playerId={index + 1} />
+          <Player key={index} player={row.player} playerId={index + 1} />
         ))}
       </section>
       <button onClick={handleDraw}>Draw</button>
