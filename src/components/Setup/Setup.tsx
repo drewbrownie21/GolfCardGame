@@ -5,7 +5,6 @@ type SelectPlayersType = {
 export function Setup({ setNumOfPlayers }: SelectPlayersType) {
   const handlePlayerSelect = (e: any) => {
     setNumOfPlayers(e.target.value);
-    console.log(e.target.value);
   };
 
   return (

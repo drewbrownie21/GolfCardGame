@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { type PlayerHandProps } from '../Game/Game'
 
-export function Player() {
-  const [hand, setHand] = useState(null);
+type PlayerProps = {
+  hand: PlayerHandProps,
+  playerId: number
+}
+
+export function Player({hand, playerId}: PlayerProps) {
 
   return (
-    <>
-      <section>1 2 3 4 5 6</section>
-    </>
+      <section>
+        <h1>Player id: {playerId}</h1>
+      </section>
   );
 }

@@ -7,7 +7,7 @@ import type { Card } from "./components/generateDeck";
 
 function App() {
   const [deck, setDeck] = useState<Card[] | null>([]);
-  console.log(deck?.length);
+  console.log("Deck Legth " + deck?.length);
 
   useEffect(() => {
     const newDeck = GenerateDeck();
@@ -15,10 +15,9 @@ function App() {
   }, []);
 
   return (
-    <>
-      <Player />
+    <main>
       <Game deck={deck} updateDeck={setDeck} onCardDrawn />
-    </>
+    </main>
   );
 }
 

@@ -8,15 +8,29 @@ type GameProps = {
   children: React.ReactNode;
 };
 
+type HandRow = [Card, Card, Card];
+type Hand2D = [HandRow, HandRow];
+
+export type PlayerHandProps = {
+  hand: Hand2D;
+  score: number;
+};
+
+type TableProps = {
+    player: PlayerHandProps 
+    id: number
+}
+
 export function Game({ deck, updateDeck, children }: GameProps) {
   const [numPlayers, setNumPlayers] = useState<number | null>(2);
   const [discarDeck, setDiscarDeck] = useState<Card[]>([]);
+  const [table, setTable] = useState<TableProps[]>([])
 
   function drawCard(numOfCardsDrawn: number) {
     const cardDrawn = deck.at(-numOfCardsDrawn);
     updateDeck((prev) => prev.slice(0, -1));
     console.log(cardDrawn);
-    console.log(discarDeck.length);
+    console.log("Discard length " + discarDeck.length);
     return cardDrawn;
   }
 
@@ -24,6 +38,8 @@ export function Game({ deck, updateDeck, children }: GameProps) {
     if (deck.length === 1) {
       const deck = GenerateDeck();
       updateDeck(deck());
+      setDiscarDeck([])
+
     }
     let cardDrawn = drawCard(1);
     if (cardDrawn) {
