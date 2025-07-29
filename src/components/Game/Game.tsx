@@ -17,14 +17,14 @@ export type PlayerHandProps = {
 };
 
 type TableProps = {
-    player: PlayerHandProps 
-    id: number
-}
+  player: PlayerHandProps;
+  id: number;
+};
 
 export function Game({ deck, updateDeck, children }: GameProps) {
   const [numPlayers, setNumPlayers] = useState<number | null>(2);
   const [discarDeck, setDiscarDeck] = useState<Card[]>([]);
-  const [table, setTable] = useState<TableProps[]>([])
+  const [table, setTable] = useState<TableProps[]>([]);
 
   function drawCard(numOfCardsDrawn: number) {
     const cardDrawn = deck.at(-numOfCardsDrawn);
@@ -38,8 +38,7 @@ export function Game({ deck, updateDeck, children }: GameProps) {
     if (deck.length === 1) {
       const deck = GenerateDeck();
       updateDeck(deck());
-      setDiscarDeck([])
-
+      setDiscarDeck([]);
     }
     let cardDrawn = drawCard(1);
     if (cardDrawn) {
@@ -54,7 +53,7 @@ export function Game({ deck, updateDeck, children }: GameProps) {
   return (
     <section>
       <Setup setNumOfPlayers={setNumPlayers} />
-      <div>{children}</div>
+      <section></section>
       <button onClick={handleDraw}>Draw</button>
       Num of players is: {numPlayers}
     </section>
