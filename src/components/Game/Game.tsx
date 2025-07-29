@@ -1,15 +1,16 @@
-import { useState } from "react";
-import { GenerateDeck, type Card } from "../generateDeck";
+import { useEffect, useState } from "react";
+import { GenerateDeck, type Card } from "../../factory/generateDeck";
+import { GenerateTable } from "../../factory/generateTable";
 import { Setup } from "../Setup/Setup";
+import { Player } from "../Player/Player";
 
 type GameProps = {
   deck: Card[];
   updateDeck: (card: Card[]) => void;
-  children: React.ReactNode;
 };
 
 type HandRow = [Card, Card, Card];
-type Hand2D = [HandRow, HandRow];
+export type Hand2D = [HandRow, HandRow];
 
 export type PlayerHandProps = {
   hand: Hand2D;
@@ -19,18 +20,24 @@ export type PlayerHandProps = {
 type TableProps = {
   player: PlayerHandProps;
   id: number;
+  isHuman: boolean;
 };
 
-export function Game({ deck, updateDeck, children }: GameProps) {
+export function Game({ deck, updateDeck }: GameProps) {
   const [numPlayers, setNumPlayers] = useState<number | null>(2);
-  const [discarDeck, setDiscarDeck] = useState<Card[]>([]);
+  const [discardDeck, setDiscardDeck] = useState<Card[]>([]);
   const [table, setTable] = useState<TableProps[]>([]);
+
+  //   Initlize the basic table
+  useEffect(() => {
+    if (numPlayers) setTable(GenerateTable(numPlayers));
+  }, [numPlayers]);
 
   function drawCard(numOfCardsDrawn: number) {
     const cardDrawn = deck.at(-numOfCardsDrawn);
     updateDeck((prev) => prev.slice(0, -1));
     console.log(cardDrawn);
-    console.log("Discard length " + discarDeck.length);
+    console.log("Discard length " + discardDeck.length);
     return cardDrawn;
   }
 
@@ -38,7 +45,7 @@ export function Game({ deck, updateDeck, children }: GameProps) {
     if (deck.length === 1) {
       const deck = GenerateDeck();
       updateDeck(deck());
-      setDiscarDeck([]);
+      setDiscardDeck([]);
     }
     let cardDrawn = drawCard(1);
     if (cardDrawn) {
@@ -47,13 +54,17 @@ export function Game({ deck, updateDeck, children }: GameProps) {
   };
 
   const addToDiscardPile = (card: Card) => {
-    setDiscarDeck((prev) => [...prev, card]);
+    setDiscardDeck((prev) => [...prev, card]);
   };
 
   return (
     <section>
       <Setup setNumOfPlayers={setNumPlayers} />
-      <section></section>
+      <section>
+        {table.map((row, index) => (
+          <Player key={index} hand={row.player} playerId={index + 1} />
+        ))}
+      </section>
       <button onClick={handleDraw}>Draw</button>
       Num of players is: {numPlayers}
     </section>

@@ -1,9 +1,8 @@
 import "./App.css";
-import { GenerateDeck } from "./components/generateDeck";
+import { GenerateDeck } from "./factory/generateDeck";
 import { Game } from "./components/Game/Game";
-import { Player } from "./components/Player/Player";
 import { useEffect, useState } from "react";
-import type { Card } from "./components/generateDeck";
+import type { Card } from "./factory/generateDeck";
 
 function App() {
   const [deck, setDeck] = useState<Card[] | null>([]);
