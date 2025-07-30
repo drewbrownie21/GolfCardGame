@@ -69,12 +69,6 @@ export function Game({ deck, updateDeck }: GameProps) {
   return (
     <section>
       <Setup setNumOfPlayers={setNumPlayers} gameStart={initialDeal} />
-      <section>
-        {table.map((row, index) => (
-          <Player key={index} player={row.player} playerId={index + 1} />
-        ))}
-      </section>
-      <button onClick={handleDraw}>Draw</button>
       <GameStart
         setTable={setTable}
         setDeck={updateDeck}
@@ -84,6 +78,12 @@ export function Game({ deck, updateDeck }: GameProps) {
         initialDeal={initialDeal}
         setStartingPlayer={setPlayersTurn}
       />
+      <section>
+        {table.map((row, index) => (
+          <Player key={index} player={row.player} playerId={index + 1} />
+        ))}
+      </section>
+      <button onClick={handleDraw}>Draw</button>
     </section>
   );
 }

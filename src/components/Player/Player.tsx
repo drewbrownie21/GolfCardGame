@@ -1,4 +1,7 @@
+import { useState } from "react";
+import type { Card } from "../../factory/generateDeck";
 import { type PlayerHandProps } from "../Game/Game";
+import styles from "./Player.module.css";
 
 type PlayerProps = {
   player: PlayerHandProps;
@@ -10,16 +13,22 @@ export function Player({ player, playerId }: PlayerProps) {
     <section>
       <h1>Player id: {playerId}</h1>
       <p>Score: {player.score}</p>
-      <section>
-        Row 1 - Card 1:{player.hand[0][0].suit}
-        {player.hand[0][0].rank} Card 2:{player.hand[0][1].suit}
-        {player.hand[0][1].rank} Card 3:{player.hand[0][2].suit}
-        {player.hand[0][2].rank} <br />
-        Row 2 - Card 4:{player.hand[1][0].suit}
-        {player.hand[1][0].rank} Card 5:{player.hand[1][1].suit}
-        {player.hand[1][1].rank} Card 6:{player.hand[1][2].suit}
-        {player.hand[1][2].rank}{" "}
-      </section>
+      <PlayersCards cards={player.hand[0]} />
+      <PlayersCards cards={player.hand[1]} />
     </section>
+  );
+}
+
+function PlayersCards({ cards }: { cards: Card[] }) {
+  const [click, setClick] = useState(false);
+
+  return (
+    <div className={styles.hand}>
+      {cards.map((card, i) => (
+        <div key={i} className={styles.card} onClick={() => setClick(!click)}>
+          {click ? `${card.suit} ${card.rank}` : null}
+        </div>
+      ))}
+    </div>
   );
 }
