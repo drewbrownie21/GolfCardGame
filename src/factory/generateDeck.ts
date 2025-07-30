@@ -34,7 +34,7 @@ export function GenerateDeck(deckInput?: Card[]) {
       })),
     );
 
-    return randomizeDeck(deckInput? deckInput : newDeck);
+    return randomizeDeck(deckInput ? deckInput : newDeck);
   };
 
   return generateDeck;

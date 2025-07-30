@@ -3,6 +3,7 @@ import { GenerateDeck, type Card } from "../../factory/generateDeck";
 import { GenerateTable } from "../../factory/generateTable";
 import { Setup } from "../Setup/Setup";
 import { Player } from "../Player/Player";
+import { InitialDeal } from "../Setup/InitialDeal";
 
 type GameProps = {
   deck: Card[];
@@ -17,7 +18,7 @@ export type PlayerHandProps = {
   score: number;
 };
 
-type TableProps = {
+export type TableProps = {
   player: PlayerHandProps;
   id: number;
   isHuman: boolean;
@@ -63,32 +64,6 @@ export function Game({ deck, updateDeck }: GameProps) {
     setDiscardDeck((prev) => [...prev, card]);
   };
 
-  /**
-   * initialDeal deals 6 cards per player, dealing 1 card per player until intial hands are at 6
-   */
-  const handleInitialDeal = () => {
-    const updatedTable = [...table];
-    let currentDeck = [...deck];
-
-    for (let row = 0; row < 2; row++) {
-      for (let col = 0; col < 3; col++) {
-        for (
-          let playerIndex = 0;
-          playerIndex < updatedTable.length;
-          playerIndex++
-        ) {
-          const cardDrawn = currentDeck.pop();
-          if (!cardDrawn) break;
-          const player = updatedTable[playerIndex];
-          player.player.hand[row][col] = cardDrawn;
-        }
-      }
-    }
-
-    setTable(updatedTable);
-    updateDeck(currentDeck);
-  };
-
   return (
     <section>
       <Setup setNumOfPlayers={setNumPlayers} />
@@ -98,7 +73,12 @@ export function Game({ deck, updateDeck }: GameProps) {
         ))}
       </section>
       <button onClick={handleDraw}>Draw</button>
-      <button onClick={handleInitialDeal}>Deal</button>
+      <InitialDeal
+        setTable={setTable}
+        setDeck={updateDeck}
+        table={table}
+        deck={deck}
+      />
     </section>
   );
 }
