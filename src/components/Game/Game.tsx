@@ -4,6 +4,7 @@ import { GenerateTable } from "../../factory/generateTable";
 import { Setup } from "../Setup/Setup";
 import { Player } from "../Player/Player";
 import { GameStart } from "./GameStart";
+import { DrawPile } from "./DrawPile";
 
 type GameProps = {
   deck: Card[];
@@ -26,7 +27,6 @@ export type TableProps = {
 
 export function Game({ deck, updateDeck }: GameProps) {
   const [numPlayers, setNumPlayers] = useState<number | null>(2);
-  const [discardDeck, setDiscardDeck] = useState<Card[]>([]);
   const [table, setTable] = useState<TableProps[]>([]);
   const [initialDeal, setInitialDeal] = useState(false);
   const [playersTurn, setPlayersTurn] = useState<number>();
@@ -35,37 +35,6 @@ export function Game({ deck, updateDeck }: GameProps) {
   useEffect(() => {
     if (numPlayers) setTable(GenerateTable(numPlayers));
   }, [numPlayers]);
-
-  function drawCard() {
-    const cardDrawn = deck.at(-1);
-    updateDeck(deck.slice(0, -1));
-    console.log(cardDrawn);
-    console.log("Discard length " + discardDeck.length);
-    return cardDrawn;
-  }
-
-  /**
-   * Draws a card from the deck, reshuffling if the deck is empty.
-   */
-  const handleDraw = () => {
-    console.log(table)
-    if (deck.length === 0) {
-      const newDeck = GenerateDeck(discardDeck);
-      updateDeck(newDeck());
-      setDiscardDeck([]);
-      console.log("Shuffling...");
-      return;
-    }
-    let cardDrawn = drawCard();
-    if (cardDrawn) {
-      addToDiscardPile(cardDrawn);
-      return cardDrawn;
-    }
-  };
-
-  const addToDiscardPile = (card: Card) => {
-    setDiscardDeck((prev) => [...prev, card]);
-  };
 
   return (
     <section>
@@ -91,9 +60,7 @@ export function Game({ deck, updateDeck }: GameProps) {
           />
         ))}
       </section>
-      <button onClick={handleDraw} disabled={!initialDeal}>
-        Draw
-      </button>
+      <DrawPile deck={deck} updateDeck={updateDeck} initialDeal={initialDeal}/>
     </section>
   );
 }
