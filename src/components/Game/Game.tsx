@@ -81,10 +81,19 @@ export function Game({ deck, updateDeck }: GameProps) {
       />
       <section>
         {table.map((row, index) => (
-          <Player key={index} player={row.player} playerId={index + 1} setTable={setTable} table={table}/>
+          <Player
+            key={index}
+            player={row.player}
+            playerId={index + 1}
+            setTable={setTable}
+            table={table}
+            initialDeal={initialDeal}
+          />
         ))}
       </section>
-      <button onClick={handleDraw}>Draw</button>
+      <button onClick={handleDraw} disabled={!initialDeal}>
+        Draw
+      </button>
     </section>
   );
 }
