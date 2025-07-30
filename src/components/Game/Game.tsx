@@ -10,7 +10,7 @@ type GameProps = {
   updateDeck: (card: Card[]) => void;
 };
 
-type HandRow = [Card, Card, Card];
+export type HandRow = [Card, Card, Card];
 export type Hand2D = [HandRow, HandRow];
 
 export type PlayerHandProps = {
@@ -48,6 +48,7 @@ export function Game({ deck, updateDeck }: GameProps) {
    * Draws a card from the deck, reshuffling if the deck is empty.
    */
   const handleDraw = () => {
+    console.log(table)
     if (deck.length === 0) {
       const newDeck = GenerateDeck(discardDeck);
       updateDeck(newDeck());
@@ -80,7 +81,7 @@ export function Game({ deck, updateDeck }: GameProps) {
       />
       <section>
         {table.map((row, index) => (
-          <Player key={index} player={row.player} playerId={index + 1} />
+          <Player key={index} player={row.player} playerId={index + 1} setTable={setTable} table={table}/>
         ))}
       </section>
       <button onClick={handleDraw}>Draw</button>
