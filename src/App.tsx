@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import type { Card } from "./factory/generateDeck";
 
 function App() {
-  const [deck, setDeck] = useState<Card[] | null>([]);
+  const [deck, setDeck] = useState<Card[]>([]);
   console.log("Deck Legth " + deck?.length);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ function App() {
 
   return (
     <main>
-      <Game deck={deck} updateDeck={setDeck} onCardDrawn />
+      <Game deck={deck} updateDeck={setDeck} />
     </main>
   );
 }

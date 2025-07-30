@@ -3,7 +3,7 @@ import { GenerateDeck, type Card } from "../../factory/generateDeck";
 import { GenerateTable } from "../../factory/generateTable";
 import { Setup } from "../Setup/Setup";
 import { Player } from "../Player/Player";
-import { InitialDeal } from "../Setup/InitialDeal";
+import { GameStart } from "./GameStart";
 
 type GameProps = {
   deck: Card[];
@@ -28,6 +28,8 @@ export function Game({ deck, updateDeck }: GameProps) {
   const [numPlayers, setNumPlayers] = useState<number | null>(2);
   const [discardDeck, setDiscardDeck] = useState<Card[]>([]);
   const [table, setTable] = useState<TableProps[]>([]);
+  const [initialDeal, setInitialDeal] = useState(false);
+  const [playersTurn, setPlayersTurn] = useState<number>();
 
   //   Initlize the basic table
   useEffect(() => {
@@ -66,18 +68,21 @@ export function Game({ deck, updateDeck }: GameProps) {
 
   return (
     <section>
-      <Setup setNumOfPlayers={setNumPlayers} />
+      <Setup setNumOfPlayers={setNumPlayers} gameStart={initialDeal} />
       <section>
         {table.map((row, index) => (
           <Player key={index} player={row.player} playerId={index + 1} />
         ))}
       </section>
       <button onClick={handleDraw}>Draw</button>
-      <InitialDeal
+      <GameStart
         setTable={setTable}
         setDeck={updateDeck}
         table={table}
         deck={deck}
+        setInitialDeal={setInitialDeal}
+        initialDeal={initialDeal}
+        setStartingPlayer={setPlayersTurn}
       />
     </section>
   );
