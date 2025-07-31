@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GenerateDeck, type Card } from "../../factory/generateDeck";
+import type { Card } from "../../factory/generateDeck";
 import { GenerateTable } from "../../factory/generateTable";
 import { Setup } from "../Setup/Setup";
 import { Player } from "../Player/Player";
@@ -60,7 +60,7 @@ export function Game({ deck, updateDeck }: GameProps) {
           />
         ))}
       </section>
-      <DrawPile deck={deck} updateDeck={updateDeck} initialDeal={initialDeal}/>
+      <DrawPile deck={deck} updateDeck={updateDeck} initialDeal={initialDeal} />
     </section>
   );
 }
