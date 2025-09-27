@@ -5,6 +5,7 @@ import { Setup } from "../../Setup/Setup";
 import { Player } from "../../Player/Player";
 import { GameStart } from "../GameStart/GameStart";
 import { DrawPile } from "../DrawPile/DrawPile";
+import styles from "./Game.module.css";
 
 type GameProps = {
   deck: Card[];
@@ -48,7 +49,7 @@ export function Game({ deck, updateDeck }: GameProps) {
         initialDeal={initialDeal}
         setStartingPlayer={setPlayersTurn}
       />
-      <section>
+      <section className={styles.board}>
         {table.map((row, index) => (
           <Player
             key={index}

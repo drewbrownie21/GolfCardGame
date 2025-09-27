@@ -38,7 +38,7 @@ export function DrawPile({ deck, updateDeck, initialDeal }: DrawPile) {
 
   const handleDiscard = () => {
     setDiscardDeck((prev) => [...prev, displayedDrawCard[0]]);
-    setDisplayedDrawCard([])
+    setDisplayedDrawCard([]);
     console.log(displayedDrawCard[0].suit + " was added to the discard.");
   };
 

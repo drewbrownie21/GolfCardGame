@@ -20,7 +20,6 @@ export function GameStart({
   initialDeal,
   setStartingPlayer,
 }: GameStartProps) {
-
   const handlePickingStartingPlayer = () => {
     let pickedPlayer = table[Math.floor(Math.random() * table.length)].id;
     console.log(pickedPlayer);
