@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import type { Card } from "../../factory/generateDeck";
-import { GenerateTable } from "../../factory/generateTable";
-import { Setup } from "../Setup/Setup";
-import { Player } from "../Player/Player";
-import { GameStart } from "./GameStart";
-import { DrawPile } from "./DrawPile";
+import type { Card } from "../../../factory/generateDeck";
+import { GenerateTable } from "../../../factory/generateTable";
+import { Setup } from "../../Setup/Setup";
+import { Player } from "../../Player/Player";
+import { GameStart } from "../GameStart/GameStart";
+import { DrawPile } from "../DrawPile/DrawPile";
 
 type GameProps = {
   deck: Card[];

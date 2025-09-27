@@ -1,6 +1,6 @@
 import "./App.css";
 import { GenerateDeck } from "./factory/generateDeck";
-import { Game } from "./components/Game/Game";
+import { Game } from "./components/Game/Game/Game";
 import { useEffect, useState } from "react";
 import type { Card } from "./factory/generateDeck";
 

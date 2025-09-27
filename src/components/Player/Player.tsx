@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { type PlayerHandProps, type TableProps } from "../Game/Game";
+import { type PlayerHandProps, type TableProps } from "../Game/Game/Game";
 import styles from "./Player.module.css";
 
 type PlayerProps = {

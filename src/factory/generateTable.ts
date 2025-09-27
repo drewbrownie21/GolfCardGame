@@ -1,4 +1,4 @@
-import { type Hand2D } from "../components/Game/Game";
+import { type Hand2D } from "../components/Game/Game/Game";
 import { type Card } from "./generateDeck";
 
 export function GenerateTable(numOfPlayers: number) {

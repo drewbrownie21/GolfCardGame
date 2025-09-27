@@ -1,5 +1,5 @@
-import type { TableProps } from "./Game";
-import type { Card } from "../../factory/generateDeck";
+import type { TableProps } from "../Game/Game";
+import type { Card } from "../../../factory/generateDeck";
 
 type GameStartProps = {
   setTable: (table: TableProps[]) => void;
@@ -20,6 +20,7 @@ export function GameStart({
   initialDeal,
   setStartingPlayer,
 }: GameStartProps) {
+
   const handlePickingStartingPlayer = () => {
     let pickedPlayer = table[Math.floor(Math.random() * table.length)].id;
     console.log(pickedPlayer);

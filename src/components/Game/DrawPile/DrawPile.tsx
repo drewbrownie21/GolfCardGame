@@ -1,4 +1,4 @@
-import { GenerateDeck, type Card } from "../../factory/generateDeck";
+import { GenerateDeck, type Card } from "../../../factory/generateDeck";
 import { useState } from "react";
 
 type DrawPile = {
