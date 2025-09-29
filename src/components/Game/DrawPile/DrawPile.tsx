@@ -24,11 +24,13 @@ export function DrawPile({ deck, updateDeck, initialDeal }: DrawPile) {
   const handleDraw = () => {
     if (deck.length === 0) {
       const newDeck = GenerateDeck(discardDeck);
-      updateDeck(newDeck());
+      updateDeck(newDeck);
       setDiscardDeck([]);
       console.log("Shuffling...");
+      console.log(newDeck);
       return;
-    }
+  };
+
     let cardDrawn = drawCard();
     if (cardDrawn) {
       setDisplayedDrawCard([cardDrawn]);
@@ -40,6 +42,7 @@ export function DrawPile({ deck, updateDeck, initialDeal }: DrawPile) {
     setDiscardDeck((prev) => [...prev, displayedDrawCard[0]]);
     setDisplayedDrawCard([]);
     console.log(displayedDrawCard[0].suit + " was added to the discard.");
+    console.log("Discard deck length " + discardDeck.length)
   };
 
   return (
