@@ -10,11 +10,13 @@ type DrawPile = {
 export function DrawPile({ deck, updateDeck, initialDeal }: DrawPile) {
   const [discardDeck, setDiscardDeck] = useState<Card[]>([]);
   const [displayedDrawCard, setDisplayedDrawCard] = useState<Card[]>([]);
+  const [isCardDrawn, setIsCardDrawn] = useState(false)
 
   function drawCard() {
     const cardDrawn = deck.at(-1);
     updateDeck(deck.slice(0, -1));
     console.log(cardDrawn);
+    setIsCardDrawn(true)
     return cardDrawn;
   }
 
@@ -43,11 +45,12 @@ export function DrawPile({ deck, updateDeck, initialDeal }: DrawPile) {
     setDisplayedDrawCard([]);
     console.log(displayedDrawCard[0].suit + " was added to the discard.");
     console.log("Discard deck length " + discardDeck.length)
+    setIsCardDrawn(false)
   };
 
   return (
     <section>
-      <button onClick={handleDraw} disabled={!initialDeal}>
+      <button onClick={handleDraw} disabled={!initialDeal || isCardDrawn}>
         Draw
       </button>
       <div>
