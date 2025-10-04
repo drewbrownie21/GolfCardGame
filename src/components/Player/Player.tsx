@@ -8,6 +8,7 @@ type PlayerProps = {
   setTable: (table: TableProps[]) => void;
   table: TableProps[];
   initialDeal: boolean;
+  handLimit?: number
 };
 
 export function Player({
@@ -16,7 +17,17 @@ export function Player({
   setTable,
   table,
   initialDeal,
+  handLimit = 6
 }: PlayerProps) {
+
+  /*
+  Future lets do something like (game of 9 is the only one that needs 3 rows)
+  const rows = handLimit != 6 ? 3 : 2
+  Same for cols, 3 cols unless its a hand of 4
+  const cols = handLimit != 4 ? 3 : 2
+  */
+  const rows = 2
+
   return (
     <section>
       <h1 onClick={() => console.log(table)}>Player id: {playerId}</h1>
