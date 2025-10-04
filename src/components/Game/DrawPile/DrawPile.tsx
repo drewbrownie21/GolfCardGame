@@ -26,9 +26,9 @@ export function DrawPile({ deck, updateDeck, initialDeal }: DrawPile) {
       return;
     }
 
-    const newDeck = GenerateDeck(discardDeck); // shuffle discard pile into new deck
+    const newDeck = GenerateDeck(discardDeck);
     updateDeck(newDeck);
-    setDiscardDeck([]); // clear discard pile
+    setDiscardDeck([]);
     console.log("Shuffling discard pile into new deck:", newDeck);
   };
 
