@@ -4,10 +4,3 @@
   justify-content: start; /* prevent grid from stretching columns */
   gap: 0px;
 }
-.card {
-  width: 50px;
-  height: 70px;
-  padding: 4px;
-  border: 1px solid #333;
-  text-align: center;
-}
