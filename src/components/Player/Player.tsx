@@ -1,6 +1,6 @@
 import { type PlayerHandProps, type TableProps } from "../Game/Game/Game";
 import styles from "./Player.module.css";
-import { Card } from "../Card/Card";
+import { PlayersCard } from "../Card/Card";
 
 type PlayerProps = {
   player: PlayerHandProps;
@@ -33,7 +33,7 @@ export function Player({
       <h1 onClick={() => console.log(table)}>Player id: {playerId}</h1>
       <p>Score: {player.score}</p>
       <div className={styles.hand}>
-        <Card
+        <PlayersCard
           player={player}
           row={0}
           col={0}
@@ -42,7 +42,7 @@ export function Player({
           playerId={playerId}
           initialDeal={initialDeal}
         />
-        <Card
+        <PlayersCard
           player={player}
           row={0}
           col={1}
@@ -51,7 +51,7 @@ export function Player({
           playerId={playerId}
           initialDeal={initialDeal}
         />
-        <Card
+        <PlayersCard
           player={player}
           row={0}
           col={2}
@@ -60,7 +60,7 @@ export function Player({
           playerId={playerId}
           initialDeal={initialDeal}
         />
-        <Card
+        <PlayersCard
           player={player}
           row={1}
           col={0}
@@ -69,7 +69,7 @@ export function Player({
           playerId={playerId}
           initialDeal={initialDeal}
         />
-        <Card
+        <PlayersCard
           player={player}
           row={1}
           col={1}
@@ -78,7 +78,7 @@ export function Player({
           playerId={playerId}
           initialDeal={initialDeal}
         />
-        <Card
+        <PlayersCard
           player={player}
           row={1}
           col={2}

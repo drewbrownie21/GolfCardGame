@@ -2,7 +2,7 @@ import { useState } from "react";
 import { type PlayerHandProps, type TableProps } from "../Game/Game/Game";
 import styles from "./Card.module.css";
 
-type PlayersCardsType = {
+type CardProps = {
   player: PlayerHandProps;
   col: number;
   row: number;
@@ -12,7 +12,7 @@ type PlayersCardsType = {
   initialDeal: boolean;
 };
 
-export function Card({
+export function PlayersCard({
   player,
   col,
   row,
@@ -20,7 +20,7 @@ export function Card({
   table,
   playerId,
   initialDeal,
-}: PlayersCardsType) {
+}: CardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   const handleCardFlip = () => {
@@ -67,9 +67,11 @@ export function Card({
           : () => console.log("Game hasn't started yet")
       }
     >
-      {isFlipped
-        ? `${player.hand[row][col].suit} ${player.hand[row][col].rank}`
-        : null}
+      <Card card={player.hand[row][col]} isFlipped={isFlipped} />
     </div>
   );
+}
+
+function Card({ card, isFlipped }: any) {
+  return <>{isFlipped ? `${card.suit} ${card.rank}` : null}</>;
 }
