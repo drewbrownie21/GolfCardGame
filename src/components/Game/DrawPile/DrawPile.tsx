@@ -56,17 +56,16 @@ export function DrawPile({ deck, updateDeck, initialDeal }: DrawPile) {
 
   return (
     <section>
-      <aside>
-        {deck.length === 0 ? "Shuffle" : "Draw"}
-      </aside>
-      <button onClick={handleDraw} disabled={!initialDeal || isCardDrawn} className={cardStyles.card}>
-        {deck.length === 0 ? "Shuffle" : "Draw"}
-      </button>
-      <div className={cardStyles.card}>
+      <aside>{deck.length === 0 ? "Shuffle" : "Draw"}</aside>
+      <button
+        onClick={handleDraw}
+        disabled={!initialDeal || isCardDrawn}
+        className={cardStyles.card}
+      >
         {displayedDrawCard.length
           ? `${displayedDrawCard[0].suit}${displayedDrawCard[0].rank}`
-          : "Peak"}
-      </div>
+          : "Peak"}{" "}
+      </button>
       <button onClick={handleDiscard} disabled={displayedDrawCard.length == 0}>
         Discard
       </button>

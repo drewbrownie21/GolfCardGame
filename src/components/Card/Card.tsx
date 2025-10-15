@@ -9,7 +9,8 @@ type CardProps = {
   setTable: (table: TableProps[]) => void;
   table: TableProps[];
   playerId: number;
-  initialDeal: boolean;
+  handIsDealt: boolean;
+  setValue: (value: number) => void;
 };
 
 export function PlayersCard({
@@ -19,7 +20,8 @@ export function PlayersCard({
   setTable,
   table,
   playerId,
-  initialDeal,
+  handIsDealt,
+  setValue,
 }: CardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
 
@@ -61,11 +63,14 @@ export function PlayersCard({
   return (
     <div
       className={styles.card}
-      onClick={
-        initialDeal
-          ? handleCardFlip
-          : () => console.log("Game hasn't started yet")
-      }
+      onClick={() => {
+        if (handIsDealt) {
+          handleCardFlip();
+          setValue(player.hand[row][col].value);
+        } else {
+          setValue(0);
+        }
+      }}
     >
       <Card card={player.hand[row][col]} isFlipped={isFlipped} />
     </div>

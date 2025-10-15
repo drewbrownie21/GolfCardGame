@@ -1,6 +1,7 @@
 import { type PlayerHandProps, type TableProps } from "../Game/Game/Game";
 import styles from "./Player.module.css";
 import { PlayersCard } from "../Card/Card";
+import { useState } from "react";
 
 type PlayerProps = {
   player: PlayerHandProps;
@@ -19,6 +20,10 @@ export function Player({
   initialDeal,
   handLimit = 6,
 }: PlayerProps) {
+  const [values, setValues] = useState([
+    [0, 0, 0],
+    [0, 0, 0],
+  ]);
   /*
   Future lets do something like (game of 9 is the only one that needs 3 rows)
   const rows = handLimit != 6 ? 3 : 2
@@ -40,7 +45,8 @@ export function Player({
           setTable={setTable}
           table={table}
           playerId={playerId}
-          initialDeal={initialDeal}
+          handIsDealt={initialDeal}
+          setValue={(value) => console.log("Card value in parent:", value)}
         />
         <PlayersCard
           player={player}
@@ -49,7 +55,8 @@ export function Player({
           setTable={setTable}
           table={table}
           playerId={playerId}
-          initialDeal={initialDeal}
+          handIsDealt={initialDeal}
+          setValue={(value) => console.log("Card value in parent:", value)}
         />
         <PlayersCard
           player={player}
@@ -58,7 +65,8 @@ export function Player({
           setTable={setTable}
           table={table}
           playerId={playerId}
-          initialDeal={initialDeal}
+          handIsDealt={initialDeal}
+          setValue={(value) => console.log("Card value in parent:", value)}
         />
         <PlayersCard
           player={player}
@@ -67,7 +75,8 @@ export function Player({
           setTable={setTable}
           table={table}
           playerId={playerId}
-          initialDeal={initialDeal}
+          handIsDealt={initialDeal}
+          setValue={(value) => console.log("Card value in parent:", value)}
         />
         <PlayersCard
           player={player}
@@ -76,7 +85,8 @@ export function Player({
           setTable={setTable}
           table={table}
           playerId={playerId}
-          initialDeal={initialDeal}
+          handIsDealt={initialDeal}
+          setValue={(value) => console.log("Card value in parent:", value)}
         />
         <PlayersCard
           player={player}
@@ -85,7 +95,8 @@ export function Player({
           setTable={setTable}
           table={table}
           playerId={playerId}
-          initialDeal={initialDeal}
+          handIsDealt={initialDeal}
+          setValue={(value) => console.log("Card value in parent:", value)}
         />
       </div>
     </section>
