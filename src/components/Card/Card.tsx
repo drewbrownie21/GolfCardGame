@@ -68,7 +68,7 @@ export function PlayersCard({
           handleCardFlip();
           setValue(player.hand[row][col].value);
         } else {
-          setValue(0);
+          setValue(null);
         }
       }}
     >

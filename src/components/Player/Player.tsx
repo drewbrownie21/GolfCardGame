@@ -20,84 +20,51 @@ export function Player({
   initialDeal,
   handLimit = 6,
 }: PlayerProps) {
-  const [values, setValues] = useState([
-    [0, 0, 0],
-    [0, 0, 0],
-  ]);
   /*
   Future lets do something like (game of 9 is the only one that needs 3 rows)
   const rows = handLimit != 6 ? 3 : 2
   Same for cols, 3 cols unless its a hand of 4
   const cols = handLimit != 4 ? 3 : 2
   */
-  const rows = 2;
-  const cols = 3;
+  const ROWS = 2;
+  const COLS = 3;
+
+  const [values, setValues] = useState<(number | null)[][]>(
+    Array.from({ length: ROWS }, () => Array(COLS).fill(null)),
+  );
+
+  const handleScoreUpdate = (value: number, row: number, col: number) => {
+    console.log(value, row, col);
+    setValues((prev) =>
+      prev.map((r, rowIndex) =>
+        rowIndex === row
+          ? r.map((cell, colIndex) => (colIndex === col ? value : cell))
+          : r,
+      ),
+    );
+    console.log(values);
+  };
 
   return (
     <section>
       <h1 onClick={() => console.log(table)}>Player id: {playerId}</h1>
       <p>Score: {player.score}</p>
       <div className={styles.hand}>
-        <PlayersCard
-          player={player}
-          row={0}
-          col={0}
-          setTable={setTable}
-          table={table}
-          playerId={playerId}
-          handIsDealt={initialDeal}
-          setValue={(value) => console.log("Card value in parent:", value)}
-        />
-        <PlayersCard
-          player={player}
-          row={0}
-          col={1}
-          setTable={setTable}
-          table={table}
-          playerId={playerId}
-          handIsDealt={initialDeal}
-          setValue={(value) => console.log("Card value in parent:", value)}
-        />
-        <PlayersCard
-          player={player}
-          row={0}
-          col={2}
-          setTable={setTable}
-          table={table}
-          playerId={playerId}
-          handIsDealt={initialDeal}
-          setValue={(value) => console.log("Card value in parent:", value)}
-        />
-        <PlayersCard
-          player={player}
-          row={1}
-          col={0}
-          setTable={setTable}
-          table={table}
-          playerId={playerId}
-          handIsDealt={initialDeal}
-          setValue={(value) => console.log("Card value in parent:", value)}
-        />
-        <PlayersCard
-          player={player}
-          row={1}
-          col={1}
-          setTable={setTable}
-          table={table}
-          playerId={playerId}
-          handIsDealt={initialDeal}
-          setValue={(value) => console.log("Card value in parent:", value)}
-        />
-        <PlayersCard
-          player={player}
-          row={1}
-          col={2}
-          setTable={setTable}
-          table={table}
-          playerId={playerId}
-          handIsDealt={initialDeal}
-          setValue={(value) => console.log("Card value in parent:", value)}
-        />
+        {Array.from({ length: ROWS }).map((_, rowIndex) =>
+          Array.from({ length: COLS }).map((_, colIndex) => (
+            <PlayersCard
+              key={`${rowIndex}-${colIndex}`}
+              player={player}
+              row={rowIndex}
+              col={colIndex}
+              setTable={setTable}
+              table={table}
+              playerId={playerId}
+              handIsDealt={initialDeal}
+              setValue={(value) => handleScoreUpdate(value, rowIndex, colIndex)}
+            />
+          )),
+        )}
       </div>
     </section>
   );
