@@ -1,7 +1,8 @@
 import { type PlayerHandProps, type TableProps } from "../Game/Game/Game";
 import styles from "./Player.module.css";
 import { PlayersCard } from "../Card/Card";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { playerScore } from "../../calculations/playerScore";
 
 type PlayerProps = {
   player: PlayerHandProps;
@@ -34,7 +35,7 @@ export function Player({
   );
 
   const handleScoreUpdate = (value: number, row: number, col: number) => {
-    console.log(value, row, col);
+    // console.log(value, row, col);
     setValues((prev) =>
       prev.map((r, rowIndex) =>
         rowIndex === row
@@ -42,8 +43,12 @@ export function Player({
           : r,
       ),
     );
-    console.log(values);
+    // console.log(values);
   };
+
+  useEffect(() => {
+    playerScore(values);
+  }, [values]);
 
   return (
     <section>
