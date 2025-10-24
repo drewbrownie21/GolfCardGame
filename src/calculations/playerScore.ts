@@ -1,22 +1,15 @@
-import { type Hand2D } from "../components/Game/Game/Game";
-
-export function playerScore(hand: Hand2D) {
-  let score: number = 0;
-
+export function playerScore(hand: (number | null)[][]) {
   let total = 0;
 
-  console.log(hand)
-
   for (let c = 0; c < hand[0].length; c++) {
-    const top = hand[0][c];
-    const bottom = hand[1][c];
+    const top = hand[0][c] ?? 0; // if null, count as 0
+    const bottom = hand[1][c] ?? 0; // if null, count as 0
 
     if (top === bottom) continue; // matching column = 0 points
 
     total += top + bottom;
   }
 
-  console.log(total)
-
-  return score;
+  console.log(total);
+  return total;
 }

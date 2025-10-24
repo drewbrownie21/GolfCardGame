@@ -30,6 +30,8 @@ export function Player({
   const ROWS = 2;
   const COLS = 3;
 
+  const [score, setScore] = useState(0);
+
   const [values, setValues] = useState<(number | null)[][]>(
     Array.from({ length: ROWS }, () => Array(COLS).fill(null)),
   );
@@ -47,13 +49,14 @@ export function Player({
   };
 
   useEffect(() => {
-    playerScore(values);
+    const newScrore = playerScore(values as any);
+    setScore(newScrore);
   }, [values]);
 
   return (
     <section>
       <h1 onClick={() => console.log(table)}>Player id: {playerId}</h1>
-      <p>Score: {player.score}</p>
+      <p>Score: {score}</p>
       <div className={styles.hand}>
         {Array.from({ length: ROWS }).map((_, rowIndex) =>
           Array.from({ length: COLS }).map((_, colIndex) => (
