@@ -37,7 +37,6 @@ export function Player({
   );
 
   const handleScoreUpdate = (value: number, row: number, col: number) => {
-    // console.log(value, row, col);
     setValues((prev) =>
       prev.map((r, rowIndex) =>
         rowIndex === row
@@ -45,7 +44,6 @@ export function Player({
           : r,
       ),
     );
-    // console.log(values);
   };
 
   useEffect(() => {

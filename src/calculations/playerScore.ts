@@ -9,7 +9,5 @@ export function playerScore(hand: (number | null)[][]) {
 
     total += top + bottom;
   }
-
-  console.log(total);
   return total;
 }
